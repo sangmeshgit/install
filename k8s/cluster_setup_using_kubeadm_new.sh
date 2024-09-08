@@ -1,4 +1,4 @@
-#!/bin/
+#!/bin/bash
 kubeconfig_path=''
 function unkown_option() {
 echo -e "\nUnknown K8S node type: $1 \n"; 
