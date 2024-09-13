@@ -62,3 +62,5 @@ Kubernetes Installation
 		
 	18. In master node check for the worker nodes.
 		kubectl get nodes 
+----------------------------------------------------------------------------------------------------------------------------------
+
