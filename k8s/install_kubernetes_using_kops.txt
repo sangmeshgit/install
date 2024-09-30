@@ -20,6 +20,9 @@ Kubernetes Installation using kops
 			kubectl config use-context <cluster_name>
 			kubectl config use-context mycluster.k8s.local
 
+        6. To check status of nodes
+                kops validate cluster --wait 10m
+
 To delete cluster in kops 
 	1. List clusters 
 	   kops get clusters
