@@ -28,3 +28,5 @@ To delete cluster in kops
 	   kops get clusters
 	2. Delete the required cluster 
 	   kops delete cluster <cluster_name> --yes
+        3. Delete s3 Bucket
+           aws s3api delete-bucket --bucket 1ket --region ap-south-1
