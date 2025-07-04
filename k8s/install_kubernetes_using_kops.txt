@@ -16,6 +16,7 @@ Kubernetes Installation using kops
 	5. Setup kubectl 
 		5a. set the store env variable 
 			export KOPS_STATE_STORE='s3://<bucket_name>'
+                        export KOPS_STATE_STORE='s3://1ket'
 		5b. use kubectl context to cluster	
 			kubectl config use-context <cluster_name>
 			kubectl config use-context mycluster.k8s.local
