@@ -29,3 +29,22 @@ sudo ln -sfn ${INSTALL_DIR}/sonar-scanner/bin/sonar-scanner ${BIN_DIR}/sonar-sca
 
 echo "SonarScanner installation is complete."
 echo "Please logout and login again or source /etc/profile.d/sonar-scanner.sh to update your PATH."
+==========================================================================================================================================
+sonar-scanner installation
+sudo apt update
+sudo apt install openjdk-17-jdk -y
+java -version
+wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-7.3.0.5189-linux-x64.zip
+(link: https://docs.sonarsource.com/sonarqube-server/analyzing-source-code/scanners/sonarscanner)
+sudo unzip sonar-scanner-cli-*.zip -d /opt/
+sudo mv /opt/sonar-scanner-* /opt/sonar-scanner
+echo 'export PATH=$PATH:/opt/sonar-scanner/bin' | sudo tee /etc/profile.d/sonar-scanner.sh
+source /etc/profile.d/sonar-scanner.sh
+sonar-scanner -v
+==============================================================================================================================================
+sonar-server installation with postgres DB
+Database
+docker run -d --name sonar_db -e POSTGRES_USER=sonar -e POSTGRES_PASSWORD=sonar -e POSTGRES_DB=sonar -v postgres_data:/var/lib/postgresql/data postgres:15
+Sonar-server
+docker run -d --name sonar -p 9000:9000 -e SONARQUBE_JDBC_URL=jdbc:postgresql://sonar_db:5432/sonar -e SONARQUBE_JDBC_USERNAME=sonar \
+ -e SONARQUBE_JDBC_PASSWORD=sonar --link sonar_db -v sonar_data:/opt/sonarqube/data -v sonar_logs:/opt/sonarqube/logs -v sonar_extensions:/opt/sonarqube/extensions sonarqube:lts
